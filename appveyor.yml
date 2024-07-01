@@ -1,0 +1,22 @@
+version: 1.0.{build}
+image: Visual Studio 2019
+
+# Настройка сборки проекта
+build: off
+
+# Шаги для установки зависимостей и сборки проекта
+install:
+  - ps: Install-Product node 14
+  - npm install
+
+# Шаги для публикации на GitHub Pages
+deploy:
+  provider: GitHub
+  edge: true
+  cleanup: false
+  token:
+    secure: YOUR_SECURE_TOKEN
+  project: .
+  artifact: dist
+  on:
+    branch: master
